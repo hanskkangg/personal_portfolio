@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Deployment with GitHub Actions</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script src="public/script/script.js" defer></script>
+</head>
+<body>
+    <!-- Navigation will be dynamically loaded -->
+    <div id="navigation"></div>
+
+    <header>
+        <h1>Azure Deployment with GitHub Actions</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Deploying to Azure with GitHub Actions</h2>
+            <p>
+                There are several ways to deploy an application using GitHub Actions and Azure. Here's the process I followed for deploying a Node.js application with CI/CD.
+            </p>
+        </section>
+
+        <section>
+            <h2>Step 1: Creating a Service Principal</h2>
+            <p>
+              <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/action_0.png?sp=r&st=2024-12-12T05:35:08Z&se=2026-04-01T12:35:08Z&sv=2022-11-02&sr=b&sig=nrnFjcpqWoXBUfAWTemuJw5sOL0L5S7nQrGHSnFgcjU%3D" alt="action_0"><br><br>
+             
+                Some people prefer downloading the Publish Profile from Azure and using it directly in their GitHub secrets. However, I chose to use Azure CLI commands.
+                Using the Azure CLI, run the following command:
+            </p>
+            <pre><code>
+az ad sp create-for-rbac --name "github-action-sp" --role contributor --scopes /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP> --sdk-auth
+            </code></pre>
+            <p>
+                Replace <code>&lt;SUBSCRIPTION_ID&gt;</code> with your Azure subscription ID and <code>&lt;RESOURCE_GROUP&gt;</code> with your resource group name. This command generates a service principal to manage resources.
+            </p>
+        
+        </section>
+
+        <section>
+            <h2>Step 2: Storing the Credentials in GitHub Secrets</h2>
+            
+            <p>
+              <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/action_1.png?sp=r&st=2024-12-12T05:36:29Z&se=2026-04-01T12:36:29Z&sv=2022-11-02&sr=b&sig=7YPcrk%2FpHhCidHYTFiaeXtW8irHVQSZCAWH29LUxz58%3D" alt="action_1">
+              <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/action_2.png?sp=r&st=2024-12-12T05:38:53Z&se=2026-04-01T12:38:53Z&sv=2022-11-02&sr=b&sig=0tEy2dmbKFBAr3qWdu4CauG8qIxJIW5kkIq2OVi6arg%3D" alt="action_2"><br><br>
+
+                The command above outputs a JSON file containing details such as <code>clientId</code>, <code>clientSecret</code>, <code>subscriptionId</code>, and <code>tenantId</code>. Save this JSON file in your repository's GitHub Secrets as <strong>AZURE_CREDENTIALS</strong>.
+            </p>
+        </section>
+
+        <section>
+            <h2>Step 3: Configuring the Deployment Workflow</h2>
+            <p>
+              <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/action_3.png?sp=r&st=2024-12-12T05:40:46Z&se=2026-06-03T12:40:46Z&sv=2022-11-02&sr=b&sig=A8Wdg%2FPa5gxNO0LdStBmVPfZR7l%2FUBCbciWw4N%2BMhIw%3D" alt="action_3">
+              <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/action_4.png?sp=r&st=2024-12-12T05:41:14Z&se=2027-03-02T13:41:14Z&sv=2022-11-02&sr=b&sig=sNJj2FIbtO8vll3986IdRUkrA0TNOa%2BwsH3kGXempD4%3D" alt="action_4"><br><br>
+
+                Next, create a deployment YAML file in the <code>.github/workflows</code> directory. You can use GitHub's deployment templates for Azure Web Apps as a base. Below is an example configuration:
+            </p>
+            <pre><code>
+name: Deploy to Azure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: MyWebApp
+        slot-name: production
+            </code></pre>
+            <p>
+                This workflow ensures your application is built and deployed to Azure automatically whenever you push changes to the <code>main</code> branch.
+            </p>
+        </section>
+
+        <section>
+            <h2>Step 4: Adding a <code>package.json</code> File</h2>
+          
+            <p>
+            <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/action_5.png?sp=r&st=2024-12-12T05:42:33Z&se=2026-06-03T12:42:33Z&sv=2022-11-02&sr=b&sig=H9ls8ga8aWN08TsAsor06xEc6DkR1qNy%2FBsBgiDjY70%3D" alt="action_5"><br><br>
+            Ensure your project contains a <code>package.json</code> file in the root directory with the necessary dependencies and scripts. For example:
+            </p>
+            <pre><code>
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'No build script defined'"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+     etc...
+  }
+}
+            </code></pre>
+            <p>
+                This file ensures the <code>npm install</code> and <code>npm run build</code> commands in the workflow function as expected.
+            </p>
+        </section>
+
+        <section>
+            <h2>Step 5: Commit and Push</h2>
+            <p>
+                After configuring everything, commit and push your changes to the <code>main</code> branch. This triggers the GitHub Actions workflow to build and deploy your application.
+            </p>
+        </section>
+
+        <section>
+            <h2>Step 6: Monitor the Deployment on Github Action</h2>
+            <p>
+              <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/action_6.png?sp=r&st=2024-12-12T05:49:06Z&se=2026-06-02T12:49:06Z&sv=2022-11-02&sr=b&sig=bPBRflnosJVIaMxw1GMVINlBC99T2auDcD9oZrE70qc%3D" alt="action_6">
+              <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/action_7.png?sp=r&st=2024-12-12T05:49:49Z&se=2026-08-01T12:49:49Z&sv=2022-11-02&sr=b&sig=hk5BeQoZ09Vm39DJ37lrMqUQZHK0zKYtOd3a%2Fy%2Bk3GM%3D" alt="action_7"><br><br>
+              Go to the 'Actions' tab in your GitHub repository to monitor the deployment process. Each step in the workflow will display logs to help you verify if the process completes successfully. If it is yellow, it means the deployment is still in the queue or being processed, and if it turns green, it means the deployment was successful.
+            </p>
+        </section>
+
+        
+        <section>
+          <h2>Step 7: Monitor the Deployment on Azure Deployment Log</h2>
+          <p>
+            <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/action_8.png?sp=r&st=2024-12-12T05:51:44Z&se=2026-08-01T12:51:44Z&sv=2022-11-02&sr=b&sig=XrwyaVv13rA%2FHYVznWLk%2FTgynaCTtd%2FtVtgk2ZFan%2B0%3D" alt="action_7"><br><br>
+             Finally, for the last step, you can go to the Deployment Center on Azure, click on "Logs," and ensure that the GitHub Actions deployment was successful and that it has been deployed to Azure.
+          </p>
+      </section>
+
+    </main>
+
+    <!-- Footer will be dynamically loaded -->
+    <div id="footer"></div>
+</body>
+</html>

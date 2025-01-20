@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 7: Network Layer, IP Addressing, and Loopback</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script src="public/script/script.js" defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="navigation"></div>
+
+    <header>
+        <h1>Topic 7: Network Layer, IP Addressing, and Loopback</h1>
+        <p>Detailed notes on the network layer, IP addressing, IP classes, and loopback addresses.</p>
+    </header>
+
+    <main>
+        <section id="detailed-info">
+            <h2>Detailed Information</h2>
+            <div id="content-container"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+</body>
+
+<script>
+    async function fetchData() {
+        try {
+            const response = await fetch('/api/data/7'); // Fetch data for Day 7
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+            const data = await response.json();
+            renderContent(data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            document.getElementById('content-container').innerHTML = '<p>Error loading data. Please try again later.</p>';
+        }
+    }
+
+    function renderContent(data) {
+        const container = document.getElementById('content-container');
+        container.innerHTML = `
+            <h3>${data.topic}</h3>
+            <p>${data.description}</p>
+            ${data.sections.map(section => `
+                <div class="section">
+                    <h4>${section.title}</h4>
+                    <ul>
+                        ${renderSectionContent(section.content)}
+                    </ul>
+                </div>
+            `).join('')}
+        `;
+    }
+
+    function renderSectionContent(content) {
+        if (Array.isArray(content)) {
+            return content.map(item => {
+                if (typeof item === 'string') {
+                    return `<li>${item}</li>`;
+                } else if (typeof item === 'object') {
+                    return `
+                        <li>
+                            <strong>${item.question || item.title || 'Untitled'}</strong>
+                            ${item.answer ? `<p>${item.answer}</p>` : ''}
+                            ${item.content ? `<ul>${renderSectionContent(item.content)}</ul>` : ''}
+                        </li>
+                    `;
+                } else {
+                    return `<li>${item}</li>`;
+                }
+            }).join('');
+        } else {
+            return `<li>${content}</li>`;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchData);
+</script>
+</html>

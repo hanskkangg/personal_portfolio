@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Deployment Guide</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script src="public/script/script.js" defer></script>
+</head>
+<body>
+    <!-- Navigation will be dynamically loaded -->
+    <div id="navigation"></div>
+
+    <header>
+        <h1>Azure Deployment Guide</h1>
+        <p>A comprehensive guide to deploying on Azure using CLI commands, bash automation, and GitHub Actions for CI/CD.</p>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction</h2>
+            <p>Learn how to deploy applications on Azure efficiently using three different methods: CLI commands, bash scripting, and GitHub Actions.</p>
+        </section>
+
+        <section>
+            <h2>Deployment Steps</h2>
+            <div class="steps">
+                <!-- Step 1 -->
+                <article id="step1">
+                    <h3><a href="azure_deployment_cli.html">Step 1: Deployment with Azure CLI</a></h3>
+                    <p>Initially, I used Azure CLI commands to deploy my applications manually. This method involved typing a series of commands (1–9 steps) for every deployment, such as creating resource groups, configuring environments, and pushing the application. Although it worked, it was time-consuming and prone to human error due to repetitive tasks. You can find a detailed walkthrough in the <a href="azure_deployment_cli.html">Azure CLI Guide</a>.</p>
+                </article>
+
+                <!-- Step 2 -->
+                <article id="step2">
+                    <h3><a href="azure_deployment_bash.html">Step 2: Deployment with Bash Script Automation</a></h3>
+                    <p>To improve efficiency and reduce errors, I created a bash script to automate the deployment process. By scripting all the CLI commands, I streamlined the deployment into a single, repeatable task. This saved time and ensured consistency across deployments. Check out the <a href="azure_deployment_bash.html">Bash Script Guide</a> for detailed instructions and a sample script.</p>
+                </article>
+
+                <!-- Step 3 -->
+                <article id="step3">
+                    <h3><a href="azure_deployment_action.html">Step 3: Deployment with GitHub Actions</a></h3>
+                    <p>Eventually, I discovered that I could further automate the process by integrating CI/CD pipelines using GitHub Actions. With this setup, all I need to do is commit and push changes from Visual Studio. GitHub Actions automatically updates my repository and deploys the changes to Azure. This method ensures a seamless and hands-free deployment process. Learn how to set up your CI/CD pipeline in the <a href="azure_deployment_action.html">GitHub Actions Guide</a>.</p>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="https://learn.microsoft.com/en-us/azure/cli/" target="_blank">Azure CLI Documentation</a></li>
+                <li><a href="https://github.com/azure/actions" target="_blank">GitHub Actions for Azure</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer will be dynamically loaded -->
+    <div id="footer"></div>
+</body>
+</html>

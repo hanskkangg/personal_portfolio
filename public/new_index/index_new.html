@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new_index</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <div id="header">
+        <div class="container">
+            <nav class="nav1">
+                <img src="images/logo.png" class="logo" alt="myLogo">
+                <ul id ="sideMenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <img src ="images/c_icon.png" alt ="close_icons" class="icon c_icon" onclick = "closeMenu()">
+                </ul>
+                <img src="images/m_icon.png" alt="menu_icons" class = "icon m_icon" onclick = "openMenu()">
+            </nav>
+
+            <div class="header-text">
+                <p>UI/UX Design</p>
+                <h1>Hello, I'm <span>Hans Kang</span> <br> Welcome to my page!</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Me Section -->
+    <div id="about">
+        <div class="contain">
+            <div class="row">
+                <div class="about_col1">
+                    <img src="images/aboutme.png" alt="About Me Image">
+                </div>
+
+                <div class="about_col2">
+                    <h1 class="sub_title">About Me</h1>
+                    <p> Hi, I’m Hans Kang, a web developer who loves building web applications, exploring new technologies, and continuously learning. When I’m free, you can catch me here working on projects, sharing my learning journey, and experimenting with new ideas. I’m currently diving into frameworks like React, which I plan to implement here as I learn. React was outside the scope of my college studies, but I’m excited to get hands-on experience and bring it to life on this webpage.</p>
+
+                    <div class="tab_title">
+                        <p class="tab_link active_link" onclick="openTab('Skills')">Skills</p>
+                        <p class="tab_link" onclick="openTab('Experience')">Experience</p>
+                        <p class="tab_link" onclick="openTab('Education')">Education</p>
+                    </div>
+
+                    <div class="tab_contents active_tab" id="Skills">
+                        <ul>
+                            <li><span>UI/UX:</span> Designing web/App interfaces</li>
+                            <li><span>Web Development:</span> Building websites</li>
+                            <li><span>App Development:</span> Creating Android apps</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab_contents" id="Experience">
+                        <ul>
+                            <li><span>2022 - Current:</span> Web Developer</li>
+                            <li><span>2020 - 2022:</span> Control Center Officer</li>
+                            <li><span>2017 - 2020:</span> Use of Force Unit</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab_contents" id="Education">
+                        <ul>
+                            <li><span>2025:</span> Computer Programming @ Algonquin College</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--- services-->
+    <div class="services" id = "services">
+        <div class="container">
+            <h1 class="sub_title">My Services
+                <div class="services_list"> 
+
+                    <div>
+                        <img src = "images/bolt.png" alt ="bolt">
+                        <h2> Web Design</h2>
+                        <p> 
+                            Nokia today announced that it has acquired Rapid’s technology assets, including the world’s largest API marketplace, and its highly skilled team.</p>
+                        <a href ="#"> Learn More</a>
+                    </div>
+
+                    <div>                        
+                        <img src = "images/eye.png" alt ="eye">
+                        <h2> UI/UX Design</h2>
+                        <p> 
+                            Nokia today announced that it has acquired Rapid’s technology assets, including the world’s largest API marketplace, and its highly skilled team.</p>
+                        <a href ="#"> Learn More</a>
+                    </div>
+
+                    <div>
+                        <img src = "images/fist.png" alt= "flame">
+                        <h2> App Design</h2>
+                        <p> 
+                            Nokia today announced that it has acquired Rapid’s technology assets, including the world’s largest API marketplace, and its highly skilled team.</p>
+                        <a href ="#"> Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- MY PORTFOLIO-->
+
+<div id="portfolio">
+    <div class="container">
+        <h1 class="sub_title"> My Work </h1>
+            <div class="work_list"> 
+
+                <div class="work">
+                    <img src = "images/work1.png" alt = "work1">
+                    <div class = "layer"> 
+                        <h3> My work1 </h3>
+                        <p> A Machine Learning API interprets data, identifies patterns, and makes predictive decisions based on extracted information. Acting as an intermediary between user queries and predictive answers, these APIs tap into data and send solutions to applications.</p>
+                        <a href="#">
+                        <img src ="images/link.png" alt = "link" class = "img1">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src = "images/work2.png" alt = "work2">
+                    <div class = "layer"> 
+                        <h3> My work1 </h3>
+                        <p> A Machine Learning API interprets data, identifies patterns, and makes predictive decisions based on extracted information. Acting as an intermediary between user queries and predictive answers, these APIs tap into data and send solutions to applications.</p>
+                        <a href="#">
+                        <img src ="images/link.png" alt = "link" class = "img1">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src = "images/work3.png" alt = "work3">
+                    <div class = "layer"> 
+                        <h3> My work3 </h3>
+                        <p> A Machine Learning API interprets data, identifies patterns, and makes predictive decisions based on extracted information. Acting as an intermediary between user queries and predictive answers, these APIs tap into data and send solutions to applications.</p>
+                        <a href="#">
+                        <img src ="images/link.png" alt = "link" class = "img1">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src = "images/work4.png" alt = "work4">
+                    <div class = "layer"> 
+                        <h3> My work2 </h3>
+                        <p> A Machine Learning API interprets data, identifies patterns, and makes predictive decisions based on extracted information. Acting as an intermediary between user queries and predictive answers, these APIs tap into data and send solutions to applications.</p>
+                        <a href="#">
+                        <img src ="images/link.png" alt = "link" class = "img1">
+                        </a>
+                    </div>
+                </div>
+        </div>
+        <a href="#" class = "button">See More</a>
+    </div>
+</div>
+
+
+<!-- CONTACT ME -->
+<div class="contact" id = "contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact_left">
+                <h1 class ="sub_title"> Contact Me</h1>
+                <p> <img src = "images/send.jpg" alt ="send">conctact@gmail.com</p>
+                <p> <img src ="images/phone.png" alt ="phone">6137003172</p>
+
+                <div class="social_icons"> 
+                    <a href="https://github.com/hanskkangg"><img src ="images/github.png" alt ="github"></a>
+                    <a href="https://www.linkedin.com/in/hanskkang/"><img src ="images/linkedin.png" alt =linkedin></a>
+                </div>
+                <a href = "images/RESUME - Hans_Kang.pdf" download class="button button2"> Download CV</a>
+
+            </div>
+
+
+            <div class="contact_right">
+
+                <form name = "submit-to-google-sheet">
+                    <input text = "text" name="Name" placeholder="Your Name" required>
+                    <input type = "email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type = "submit" class="button button3">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+
+        </div>
+        <div class = "copyright">
+        <p> Copyright@ Hans Kang</p>
+    </div>
+    </div> 
+</div>
+
+
+
+    <script>
+        let tablinks = document.getElementsByClassName("tab_link");
+        let tabcontents = document.getElementsByClassName("tab_contents");
+
+        function openTab(tabname) {
+            
+            // Remove active class from all tabs and contents
+            for (let tablink of tablinks) {
+                tablink.classList.remove("active_link");
+            }
+            for (let tabcontent of tabcontents) {
+                tabcontent.classList.remove("active_tab");
+            }
+
+            // Add active class to clicked tab and corresponding content
+            event.currentTarget.classList.add("active_link");
+            document.getElementById(tabname).classList.add("active_tab");
+        }
+
+
+
+
+    </script>
+
+    <script>
+
+        var sideMenu = document.getElementById("sideMenu");
+
+        function openMenu(){
+            sideMenu.style.right = "0";
+        }
+        function closeMenu(){
+            sideMenu.style.right = "-200px";
+        }
+
+    </script>
+
+<!-- Javascript for contact form-->
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbysU4-hrPCqJf02LDAKF7mLR8ayf7TrZGtxof1M8p_JKXodcDnHC9fBJWUXitHfjboS/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+
+                // Show success message as an alert
+                alert("Thank you! Your message has been sent successfully!");
+                // Reset the form after submission
+                form.reset();
+            })
+            .catch(error => {
+
+                // Show error message in case of failure
+                alert("Oops! Something went wrong. Please try again.");
+
+                console.error('Error!', error.message);
+            });
+    });
+</script>
+
+
+</body>
+</html>
+    

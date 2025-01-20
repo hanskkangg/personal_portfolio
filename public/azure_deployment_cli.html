@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure CLI Deployment: My Process</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script src="public/script/script.js" defer></script>
+</head>
+<body>
+    <!-- Navigation will be dynamically loaded -->
+    <div id="navigation"></div>
+
+    <header>
+        <h1>How I Deployed My Project to Azure</h1>
+        <p>Step-by-step guide on what I did to deploy my project using Azure CLI and GitHub.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Step 1: Cloning My GitHub Repository</h2>
+            <p>
+                First, I went to the azure terminal and cloned my GitHub repository to my local computer. This creates a local copy of my project so I can make changes and work on it.
+            </p>
+            <pre><code>git clone https://github.com/hanskkangg/hansdevhub_static_web_hosting.git</code></pre>
+            <p>
+                After running this, I had all my project files ready to work on locally.
+            </p>
+            <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/CLI_1.png?sp=r&st=2024-12-10T19:23:05Z&se=2027-01-02T03:23:05Z&sv=2022-11-02&sr=b&sig=xsiW2JljpTIp8aiYcCUvpQKHC0bK3OwtlfQtP45U2%2FQ%3D" alt="CLI Step 1">
+           
+        </section>
+
+        <section>
+            <h2>Step 2: Setting Up My GitHub User Information</h2>
+            <p>
+                Next, I configured Git with my name and email. This ensures that all my commits are properly associated with me.
+            </p>
+            <pre><code>git config --global user.email "hans.kkang@gmail.com"</code></pre>
+            <pre><code>git config --global user.name "hans kang"</code></pre>
+            <p>
+                This step is important because it lets Git know who is making changes to the project.
+            </p>
+        </section>
+
+        <section>
+            
+            <h2>Step 3: Preparing My Project for Git</h2>
+            <p>
+                Then, I moved into my project folder and initialized a Git repository. After that, I staged all the files to prepare them for my first commit.
+            </p>
+            <pre><code>cd hansdevhub_static_web_hosting</code></pre>
+            <pre><code>git init</code></pre>
+            <pre><code>git add .</code></pre>
+            <p>
+                - <code>cd hansdevhub_static_web_hosting</code>: This command takes me into my project folder.<br>
+                - <code>git init</code>: This initializes a Git repository in the folder.<br>
+                - <code>git add .</code>: This stages all the files in the project for a commit.
+                <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/CLI_2.png?sp=r&st=2024-12-10T19:34:16Z&se=2024-12-11T03:34:16Z&sv=2022-11-02&sr=b&sig=y0i5efzBXITmxF%2B32XZFI9pIRmtRV7pHX%2FDui2R0Z9I%3D" alt="CLI Step 2">
+            
+            </p>
+        </section>
+
+        <section>
+            
+          <h2>Step 4: Committing My Changes</h2>
+            <p>
+                After staging my files, I made my first commit with a message describing the changes I made. In this case, I mentioned that I updated my server.js file.
+            </p>
+            <pre><code>git commit -m "azure deployment"</code></pre>
+            <p>
+                This creates a snapshot of the current state of my project, which I can now push to a remote repository or a deployment platform.
+            </p>
+        </section>
+
+        <section>
+            
+            <h2>Step 5: Configuring Azure Deployment</h2>
+            <p>
+                I set up Azure to accept my local Git repository as a source for deployment. This command provides a URL where I can push my project code.
+            </p>
+            <pre><code>az webapp deployment source config-local-git --name name --resource-group group</code></pre>
+            
+            <p>
+                In this command, I replaced <code>name and resource group</code> with my nme and my resource group</p>
+            <p>
+                This step is critical because it links my project to Azure Web App for deployment.
+                <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/CLI_3.png?sp=r&st=2024-12-10T20:08:27Z&se=2026-05-02T03:08:27Z&sv=2022-11-02&sr=b&sig=0V8ZZyxCrSn%2BxNxxcAfbHW1sOpj%2FVwCQliwFJUy9EVA%3D" alt="CLI Step 3">
+            
+            </p>
+        </section>
+
+        <section>
+            <h2>Step 6: Retrieving Publishing Credentials</h2>
+            <p>
+                To deploy my project, I needed the publishing username and password provided by Azure. I retrieved these using the following command:
+            </p>
+            <pre><code>az webapp deployment list-publishing-credentials --name name --resource-group group</code></pre>
+            <p>
+                In this command, I replaced <code>name and resource group</code> with my nme and my resource group</p>
+            <p>
+                Azure returned my username and password, which I used in the next step to add Azure as a remote repository.
+                <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/CLI_4.png?sp=r&st=2024-12-10T20:08:56Z&se=2026-04-02T03:08:56Z&sv=2022-11-02&sr=b&sig=RsETnbC9t7k6zWx%2Fn0RTpMqZ1ddzmuY22%2FEg%2BoX32ME%3D" alt="CLI Step 4">
+           
+            </p>
+        </section>
+
+        <section>
+            
+            <h2>Step 7: Adding Azure as a Remote Repository</h2>
+            <p>
+                After getting my credentials, I added Azure Web App as a remote repository in Git. This step lets me push my project code directly to Azure.
+            </p>
+            <pre><code>git remote add azure 'https://$hansdevhub:password@hansdevhub.scm.azurewebsites.net/hansdevhub.git'</code></pre>
+            <p>
+                In this command, I replaced <code>password</code> with the publishing password I retrieved earlier.
+            </p>
+        </section>
+
+        <section>
+            
+             <h2>Step 8: Pushing My Code to Azure</h2>
+            <p>
+                Finally, I pushed my project code to Azure's master branch using the following command:
+            </p>
+            <pre><code>git push azure main:master</code></pre>
+            <p>
+                This command sends my local project files to Azure, where they are deployed. After the push is complete, my application is live on Azure!
+                
+            <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/CLI_5.png?sp=r&st=2024-12-10T19:36:37Z&se=2026-05-02T02:36:37Z&sv=2022-11-02&sr=b&sig=BvUPoFUeLx8ml8wrYBh92yQaA57dNwQvbwA2b%2F5mjkM%3D" alt="CLI Step 5">
+            <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/CLI_6.png?sp=r&st=2024-12-10T19:37:12Z&se=2026-06-12T02:37:12Z&sv=2022-11-02&sr=b&sig=7Ctm4uWEMwk4WpdyVn4iHaAdU6VdM6tYmPnFo6JCfVs%3D" alt="CLI Step 6">
+           
+            </p>
+
+            
+        </section>
+
+    </main>
+
+    <!-- Footer will be dynamically loaded -->
+    <div id="footer"></div>
+</body>
+</html>

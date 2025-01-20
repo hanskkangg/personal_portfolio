@@ -1,0 +1,554 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Popping', sans-serif;
+    box-sizing: border-box;
+}
+
+
+html{
+
+    scroll-behavior: smooth;
+}
+body{
+    background: #080808;
+    color: #fff
+}
+
+#header {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../images/simple_background.gif');
+    background-size: cover; /* Ensures the image covers the entire header area */
+    background-position: center; /* Centers the image */
+}
+
+
+
+.nav1 {
+    margin-top: 10px; /* Place it at the top */
+    left: 10px; /* Slight gap from the left */
+    z-index: 1; /* Lower stacking order */
+    display:flex;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo {
+    width: 100px;
+    height: 100px; /* Maintain aspect ratio */
+    z-index: 2; /* Ensure it stays on top */
+    margin-top: -30px;
+}
+
+.container{
+    padding: 10px 10%;
+
+}
+
+nav ul li{
+    display: inline-block; /* make the list horizontal*/
+    list-style: none;
+    margin: 10px 20px;
+}
+
+nav ul li a {
+    top: 10px;
+    color:white;
+    text-decoration:  none;
+    font-size: 18px;
+    position: relative;
+}
+
+/* setting up the hover action */
+nav ul li a::after {
+    content: '';
+    width: 0%;
+    height: 3px;
+    background: #ff040f;
+    position:absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 1s;
+}
+
+/* when i hover i see the nav ul li thing appear by selecting width 100%*/
+nav ul li a:hover::after {
+    width:100%
+}
+
+.header-text {
+    margin-top: 20%;
+    font-size: 30px;
+}
+
+.header-text h1 {
+    font-size: 60px;
+    margin: 10px 0; /* Adds a smaller margin for better spacing */
+}
+
+.header-text h1 span {
+    color: red;
+}
+
+
+/* for about me */
+#about {
+    padding: 80px 0px;
+    color: #ababab;
+
+
+}
+
+
+.row {
+    /* to get the content side by side */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.about_col1 {
+    flex-basis: 35%
+}
+
+.about_col1 img {
+    width: 80%; /* Make the image responsive to the container width */
+    border-radius: 15px; /* Add rounded corners if desired */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow for better appearance */
+    margin-left:150px;
+}
+
+
+.about_col2 {
+    width: 80%;
+    flex-basis: 50%;
+    margin-left: 70px;
+    margin-right: 150px;
+
+}
+
+.sub_title {
+    font-size: 60px;
+    font-weight: 600;
+    color: white;    
+}
+
+
+.tab_title {
+    display: flex;
+    margin: 20px 0 40px;
+
+}
+
+.tab_link{
+    margin-right:50px;
+    font-size:18px;
+    font-weight: 500;
+    cursor:pointer;
+    position:relative;
+}
+
+
+/* for hovering links*/
+.tab_link::after{
+    content: '';
+    width:0;
+    height: 3px;
+    background: #ff004f;
+    position:absolute;
+    left:0;
+    bottom: -8px;
+    transition: 1s;
+}
+
+
+.tab_link.active_link::after{
+
+    width:50%;
+}
+
+
+.tab_contents ul li {
+    list-style:none;
+    margin:10px 0px;
+}
+
+.tab_contents ul li span {
+    color: red;
+    font-size:14px;
+}
+
+.tab_contents {
+    display: none;
+}
+
+.tab_contents.active_tab{
+
+    display: block;
+}
+
+
+
+/* For services*/
+
+#services {
+    padding: 30px 0;
+}
+.services_list{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    grid-gap: 40px;
+    margin-top: 50px;
+}
+
+.services_list div {
+    background: #262626;
+    padding: 40px;
+    font-size: 13px;
+    font-weight: 300;
+    border-right: 10px solid transparent; /* Fixed */
+    transition: background 0.5s, transform 0.5s, color 0.5s;
+}
+
+.services_list div h2 {
+    font-size: 30px; /* Reduce heading size */
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+
+.services_list p {
+    font-size: 14px; /* Reduce paragraph text size */
+    margin: 10px 0; /* Adjust spacing between elements */
+}
+
+.services_list div a {
+    display: inline-block; /* Make it a block-level element for better styling */
+    font-size: 14px; /* Reduce link text size */
+    color: white; /* Ensure text color contrasts with the background */
+    margin-top: 20px; /* Add spacing between paragraph and link */
+} 
+
+.services_list p {
+    font-size: 14px; /* Reduce paragraph text size */
+    margin: 10px 0; /* Adjust spacing between elements */
+}
+
+
+.services_list div img {
+    width: 30px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Add spacing below the image */
+    filter: invert(1); /* Convert black to white */
+}
+
+/* change color when hovering */
+.services_list div:hover {
+
+    background: rgb(255, 228, 196);
+
+    color: black; /* Adjust text color for better contrast */
+    transform: translateY(-10px);
+}
+
+.services_list div:hover img {
+    filter: invert(0); /* Change the icon to black when hovering */
+}
+
+.services_list div:hover a {
+    color: rgb(246, 27, 27); /* Change link color on hover */
+}
+
+
+
+/* PORTFOLIO */
+
+#portfolio{
+    /* padding 50px from top and bottom and 0px from left and right*/
+    padding: 50px 0;
+
+}
+
+.work_list{
+display:grid;
+grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+grid-gap: 40px;
+margin-top: 50px;
+
+}
+
+.work{
+    border-radius: 10px;
+    position:relative;
+    overflow: hidden;
+}
+
+.work img{
+    width: 500px;
+    border-radius: 10px;
+    display: block;
+
+    /*when hovering */
+    transition: transform 2s;
+}
+
+.layer .img1 {
+    width:30px;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+
+.layer{
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(rgba(0,0,0,0.6), #ff004f);
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    font-size: 14px;
+
+    /*when hovering */
+    transition: 2s;
+}
+
+.layer h3 {
+    font-weight: 500;
+    margin-bottom: 20px;
+
+}
+
+
+.layer a {
+
+    margin-top: 20px;
+    color:#ff004f;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 60px;
+    background: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.work:hover img{
+    /*ZOOM IN when hover*/
+    transform: scale(2.2);
+}
+
+.work:hover .layer{
+    height: 100%;
+}
+
+.button{
+    display:block;
+    margin: 50px auto;
+    width: fit-content;
+    border: 1px solid #ff004f;
+    padding: 14px 50px;
+    border-radius: 6px;
+    text-decoration: none;
+    color:white;
+    transition: background 0.5s;
+
+}
+
+.button:hover{
+    background: #ff004f;
+}
+
+/* CONTACT */
+
+.contact_left{
+    flex-basis: 35%
+}
+
+
+.contact_right{
+    flex-basis: 60%
+}
+
+.contact_left p img{
+    margin-right: 15px;
+    font-size: 25px;
+    width:50px;
+    
+    margin-bottom: 20px; /* Add spacing below the image */
+    filter: invert(1); /* Convert black to white */
+}
+
+
+.social_icons img {
+    width: 50px; /* Adjust width */
+    height: auto; /* Adjust height */
+    margin-right: 15px; /* Add spacing between icons */
+    filter: invert(1); /* Convert black to white */
+    display: inline-block;
+    text-decoration: none;
+    transition: transform 0.5s; /* Add hover effect */
+}
+
+.social_icons img:hover {
+    color: #ff004f;
+    transform: translateY(-5px);
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.button.button2{
+    display: inline-block;
+    background: #ff004f;
+} 
+.button.button3{
+    display: inline-block;
+    background: #ff004f;
+    margin-left: 15px;
+} 
+
+.contact_right {
+    width: 100%;
+}
+
+form input, form textarea {
+
+    width: 100%;
+    border:0;
+    outline: none;
+    background: #262626;
+    padding: 15px;
+    margin: 15px;
+    color:#fff;
+    font-size: 18px;
+    border-radius: 6px;
+}
+
+form .button.button3{
+    padding: 14px 60px;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.copyright{
+    width:100%;
+    text-align: center;
+    padding: 25px;
+    background: #262626;
+    font-weight: 300;
+}
+
+/* Hide the icons by default */
+nav .icon {
+    display: none;
+}
+/* For dynamic and small screens */
+@media only screen and (max-width: 600px) {
+    #header {
+        background-image: url('images/p_bg.jpg'); /* Add the appropriate URL for the background image */
+    }
+
+    .header-text {
+        margin-top: 100%; /* Adjusts margin for small screens */
+        font-size: 16px; /* Adjusts the font size of the text container */
+    }
+
+    .header-text h1 {
+        font-size: 30px; /* Adjusts font size of the h1 inside .header-text */
+    }
+
+    /* Display the icons on small screens */
+    nav .icon {
+        display: block;
+        font-size: 25px;
+        cursor: pointer; /* Adds a pointer cursor for better UX */
+    }
+
+    /* Hide the navigation list (if needed) for small screens */
+    nav ul {
+        background: #ff004f;
+        position:fixed;
+        top:0;
+        right: -200px;
+        width:200px;
+        height:100vh;
+        padding-top:50px;
+        z-index: 2;
+        transition: 1s;
+    }
+
+
+    nav ul li {
+        display: block;
+        margin: 25px;
+
+
+    }
+
+
+    nav ul .icon {
+        position: absolute;
+        top: 25px;
+        left:25px;
+        cursor: pointer;
+        
+    }
+
+    .sub_title{
+        font-size: 40px;
+    }
+
+    .about_col1, .about_col2 {
+        flex-basis: 100%;
+        margin: 20px;
+    }
+
+    .about_col1 {
+        margin-bottom: 30px;
+        margin-left: -130px;
+    }
+
+    .about_col2 {
+        font-size: 14px;
+    }
+
+    .tab_link {
+        font-size: 16px;
+        margin-right: 20px;
+    }
+
+    .contact_left, .contact_right {
+    flex-basis: 100%;
+
+    }
+
+    .contact_right{
+        margin-left: -20px;
+    }
+
+    .copyright{
+        font-size: 14px;
+    }
+
+}
+
+    #msg{
+        color:#61b752;
+        margin-top:-40px;
+        display: block;
+    }
+    /* Example: When the menu icon is clicked nav ul can be toggled */
+    nav ul.show {
+        display: block; /* Show the nav menu on small screens */
+    }

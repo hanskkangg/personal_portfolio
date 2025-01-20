@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCNA Study Guide</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script src="public/script/script.js" defer></script>
+</head>
+<body>
+    <!-- Navigation will be dynamically loaded -->
+    <div id="navigation"></div>
+
+    <header>
+        <h1>CCNA Study Guide</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Welcome to the my CCNA Study Guide</h2>
+             <p>Explore essential topics to help understand networking, routing, and switching concepts in preparation for CCNA certification.</p>
+        </section>
+
+              <!-- Planning to implement currnet status later -->
+        <section>
+            <h2>Current Chapter</h2>
+              <p>
+                  <button class = "currentChapter" onclick="alert('My current Chapter is : ' + currentChapter);"> Check Current Chapter</button> <br><br>
+
+                  <button class = "+1" onclick = "
+                    currentChapter++;
+                    ">+1</button>
+
+                  <button class = "+2" onclick = "
+                    currentChapter += 2;
+                    " >+2</button>
+
+                  <button class = "+3" onclick = "
+                    currentChapter += 3;
+                    ">+3</button>
+
+                  <button class = "reset" onclick = "alert('are you sure?');
+                    
+                    currentChapter = 0;
+                    ">Reset my chapter</button>
+               </p>
+        </section>
+        
+              <!-- needs to be updated (visual and logic) -->
+              <section>
+                <h2>You're not sure if you want to conitnue??</h2>
+                  <p> Try your luck now! <br><br>
+
+                    <button class = 'rock' onclick="
+
+                    let randomN = Math.random();
+                    let enemyMove = '';
+
+                    if(randomN >= 0 && randomN < 1/3){
+                      enemyMove = 'Rock';
+                    }
+                    else if(randomN >= 1/3 && randomN < 2/3){
+                      enemyMove = 'Paper';
+                    }
+                    else if(randomN >= 2/3){
+                      enemyMove = 'Scissor';
+                    }
+
+                    console.log(enemyMove);
+
+                    let result = '';
+
+                    if (enemyMove === 'Rock'){
+                      result = 'it\'s a tie. Play again!'
+                    }
+                    else if (enemyMove ==='Paper'){
+                      result = 'you Lost! You should keep studying!'
+                    }
+                    else if (enemyMove === 'Scissor'){
+                      result = 'you won! You can stop studying!'
+                    }
+
+                    console.log(result);
+
+                    alert(`You picked Rock! Enemy picked ${enemyMove} and ${result}`);
+
+                      ">ROCK</button>
+
+                    <button class = 'paper' onclick = "
+                    
+                    let randomN = Math.random();
+                    let enemyMove = '';
+
+                    if(randomN >= 0 && randomN < 1/3){
+                      enemyMove = 'Rock';
+                    }
+                    else if(randomN >= 1/3 && randomN < 2/3){
+                      enemyMove = 'Paper';
+                    }
+                    else if(randomN >= 2/3){
+                      enemyMove = 'Scissor';
+                    }
+
+                    console.log(enemyMove);
+
+                    let result = '';
+
+                    if (enemyMove === 'Rock'){
+                      result = 'you won! You can stop studying!'
+                    }
+                    else if (enemyMove ==='Paper'){
+                      result = 'it\'s a tie. Play again!'
+                    }
+                    else if (enemyMove === 'Scissor'){
+                      result = 'you Lost! You should keep studying!'
+                    }
+
+                    console.log(result);
+
+                    alert(`You picked Paper! Enemy picked ${enemyMove} and ${result}`);
+                                         
+                                         ">PAPER</button>
+
+                    <button class = 'scissor' onclick="
+                    
+                    let randomN = Math.random();
+                    let enemyMove = '';
+
+                    if(randomN >= 0 && randomN < 1/3){
+                      enemyMove = 'Rock';
+                    }
+                    else if(randomN >= 1/3 && randomN < 2/3){
+                      enemyMove = 'Paper';
+                    }
+                    else if(randomN >= 2/3){
+                      enemyMove = 'Scissor';
+                    }
+
+                    console.log(enemyMove);
+
+                    let result = '';
+
+                    if (enemyMove === 'Rock'){
+                      result = 'you Lost! You should keep studying!!'
+                    }
+                    else if (enemyMove ==='Paper'){
+                      result = 'you won! You can stop studying!'
+                    }
+                    else if (enemyMove === 'Scissor'){
+                      result = 'it\'s a tie. Play again!'
+                    }
+
+                    console.log(result);
+
+                    alert(`You picked Scissor! Enemy picked ${enemyMove} and ${result}`);
+                                         ">SCISSOR</button>
+                  
+                  </p>
+            </section>
+
+        <section>
+            <h2>Topics Overview</h2>
+            <div class="topics">
+                <!-- Topic 1 -->
+                <article id="topic1">
+                    <h3><a href="day1_network_devices.html">Topic 1: Network Devices</a></h3>
+                    <ul>
+                        <li>Introduction to network components like clients, servers, and switches.</li>
+                        <li>Roles of routers and firewalls in securing and managing traffic between networks.</li>
+                        <li>Overview of network topologies (Star, Ring, Mesh, etc.).</li>
+                    </ul>
+                </article>
+
+                <!-- Topic 2 -->
+                <article id="topic2">
+                    <h3><a href="topic2_interfaces_and_cables.html">Topic 2: Interfaces and Cables</a></h3>
+                    <ul>
+                        <li>Introduction to Ethernet and its importance in networking.</li>
+                        <li>Understanding UTP cables and RJ-45 connectors.</li>
+                        <li>Different cable types: Straight-through and Crossover.</li>
+                        <li>Overview of Fiber Optic cables and their advantages.</li>
+                    </ul>
+
+                    
+                <!-- Topic 3 -->
+                <article id="topic3">
+                    <h3><a href="topic3_osi_model_tcp_ip_suite.html">Topic 3: OSI Model & TCP/IP Suite</a></h3>
+                    <ul>
+                        <li>Introduction to OSI model & TCP/IP Suite</li>
+                    </ul>
+                </article>
+                
+                    
+                <!-- Topic 6 -->
+                <article id="topic6">
+                    <h3><a href="topic6_ethernet_arp_ping.html">Topic 6: Etherenet, Arp and Ping</a></h3>
+                    <ul>
+                        <li>Introduction to Etherenet, Arp and Ping</li>
+                    </ul>
+                </article>
+                
+                    
+                <!-- Topic 7 -->
+                <article id="topic7">
+                    <h3><a href="topic7_network_layer_ip_addressing.html">Topic 7: Network Layer and IP addressing</a></h3>
+                    <ul>
+                        <li>Introduction to Network Layer and IP addressing</li>
+                    </ul>
+                </article>
+                
+                    
+                <!-- Topic 8 -->
+                <article id="topic8">
+                    <h3><a href="topic8_ipv4_addressing_config.html">Topic 8: IPv4 addressing and configuration</a></h3>
+                    <ul>
+                        <li>Introduction to IPv4 addressing and configuration</li>
+                    </ul>
+                </article>
+                
+                    
+                <!-- Topic 9 -->
+                <article id="topic9">
+                    <h3><a href="topic9_switch_interface_config.html">Topic 9: Switch Interface and configuration</a></h3>
+                    <ul>
+                        <li>Introduction to Switch Interface and configuration</li>
+                    </ul>
+                </article>
+                
+                    
+                <!-- Topic 10 -->
+                <article id="topic10">
+                    <h3><a href="topic10_ipv4_header.html">Topic 10: IPv4 Header and Details</a></h3>
+                    <ul>
+                        <li>Introduction to IPv4 Header and Details</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+
+        <script>
+            let currentChapter = 0;
+
+            if (currentChapter >=10){
+
+              alert('you\'re awesome!');
+            }
+        </script>
+
+    </main>
+
+    <!-- Footer will be dynamically loaded -->
+    <div id="footer"></div>
+  
+</body>
+</html>

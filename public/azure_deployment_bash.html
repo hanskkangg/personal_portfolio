@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automating Azure Deployment with Bash</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script src="public/script/script.js" defer></script>
+</head>
+<body>
+    <!-- Navigation will be dynamically loaded -->
+    <div id="navigation"></div>
+
+    <header>
+        <h1>Automating Azure Deployment with Bash</h1>
+        <p>Learn how I automated the deployment of my Azure Web App using a Bash script.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Why I Created a Bash Script</h2>
+            <p>
+                Manually deploying to Azure using multiple CLI commands was time-consuming and error-prone. To simplify the process and ensure consistency, 
+                I created a Bash script. This script automates repetitive tasks such as cloning repositories, configuring Git, setting up Azure deployment, 
+                and pushing changes. Using this approach saves time and reduces the chances of human errors during deployment.
+            </p>
+        </section>
+
+        <section>
+            <h2>The Bash Script</h2>
+            <p>
+                Below is the Bash script I created to automate my deployment process. Each command is explained in detail in the next section.
+            </p>
+            <pre><code>
+#!/bin/bash
+# Clone repository
+git clone https://github.com/hanskkangg/hansdevhub_static_web_hosting.git
+cd hansdevhub_static_web_hosting
+
+# Set up Git user configuration
+git config --global user.email "hans.kkang@gmail.com"
+git config --global user.name "hans kang"
+
+# Initialize Git and commit changes
+git init
+git add .
+git commit -m "azure deployment after updating server.js"
+
+# Configure Azure deployment
+az webapp deployment source config-local-git --name name --resource-group group
+az webapp deployment list-publishing-credentials --name name --resource-group group
+
+# Add Azure remote and push changes
+git remote add azure 'https://$hansdevhub:my_password@hansdevhub.scm.azurewebsites.net/hansdevhub.git'
+git push azure main:master
+
+
+<img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/bash_1.png?sp=r&st=2024-12-10T20:15:25Z&se=2026-05-02T03:15:25Z&sv=2022-11-02&sr=b&sig=M8ZrJN7ayHe%2FCURbJXy1gPElXiRnaE3qEOKN5ORIv60%3D" alt="Bash 1">
+
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Step-by-Step Explanation</h2>
+            <div class="steps">
+                <!-- Step 1 -->
+                <article id="step1">
+                    <h3>Step 1: Clone the Repository</h3>
+                    <p>
+                        The script starts by cloning the GitHub repository to your local machine. This creates a local copy of the project that you can work on.
+                    </p>
+                    <pre><code>git clone https://github.com/hanskkangg/hansdevhub_static_web_hosting.git</code></pre>
+                    
+<img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/bash_2.png?sp=r&st=2024-12-10T20:25:57Z&se=2026-02-02T04:25:57Z&sv=2022-11-02&sr=b&sig=sZZhmE05%2BM00qG%2BgaPeIv810%2FCyYfM9NywmFAUF9evA%3D" alt="Bash 2">
+
+                </article>
+
+                <!-- Step 2 -->
+                <article id="step2">
+                    <h3>Step 2: Configure Git</h3>
+                    <p>
+                        Configuring Git with your email and username ensures that your commits are properly attributed to you. This is essential for tracking changes.
+                    </p>
+                    <pre><code>git config --global user.email "hans.kkang@gmail.com"</code></pre>
+                    <pre><code>git config --global user.name "hans kang"</code></pre>
+                </article>
+
+                <!-- Step 3 -->
+                <article id="step3">
+                    <h3>Step 3: Initialize and Commit Changes</h3>
+                    <p>
+                        Initializing a Git repository, staging files, and committing changes prepares your project for deployment. The commit message describes the changes made.
+                    </p>
+                    <pre><code>
+git init
+git add .
+git commit -m "azure deployment"
+                    </code></pre>
+                </article>
+
+                <!-- Step 4 -->
+                <article id="step4">
+                    <h3>Step 4: Configure Azure Deployment</h3>
+                    <p>
+                        The script configures Azure Web App to accept your local Git repository for deployment. This step links your project to Azure's deployment system.
+                    </p>
+                    <pre><code>
+az webapp deployment source config-local-git --name name --resource-group group
+                    </code></pre>
+                </article>
+
+                <!-- Step 5 -->
+                <article id="step5">
+                    <h3>Step 5: Retrieve Azure Credentials</h3>
+                    <p>
+                        To authenticate with Azure, you need the publishing credentials (username and password) provided by Azure. The script retrieves these credentials for you.
+                    </p>
+                    <pre><code>
+az webapp deployment list-publishing-credentials --name name --resource-group group
+                    </code></pre>
+                </article>
+
+                <!-- Step 6 -->
+                <article id="step6">
+                    <h3>Step 6: Add Azure as a Remote Repository</h3>
+                    <p>
+                        The script adds Azure as a remote repository in Git. This step allows you to push your project to Azure's deployment system.
+                    </p>
+                    <pre><code>
+git remote add azure 'https://$hansdevhub:my_password@hansdevhub.scm.azurewebsites.net/hansdevhub.git'
+                    </code></pre>
+                </article>
+
+                <!-- Step 7 -->
+                <article id="step7">
+                    <h3>Step 7: Push Changes to Azure</h3>
+                    <p>
+                        Finally, the script pushes your project to Azure's `master` branch, deploying it live.
+                    </p>
+                     <pre><code>git push azure main:master</code></pre>
+                     
+<img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/bash_3.png?sp=r&st=2024-12-10T20:26:42Z&se=2026-04-02T03:26:42Z&sv=2022-11-02&sr=b&sig=gRjMMPY%2BG1c0Xa8utwcDu6JO7oiGHbTOsXuVWO55360%3D" alt="Bash 3">
+
+<img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/bash_4.png?sp=r&st=2024-12-10T20:27:33Z&se=2026-04-02T03:27:33Z&sv=2022-11-02&sr=b&sig=eQLlFeI0%2BvLOfcciUFqZY0ondhw%2FJDXKR7miJ8LLR4w%3D" alt="Bash 4">
+<p>
+    As you can see from the output above, the deployment was successful. By simply double-clicking the <code>deploy.sh</code> file, all deployment steps are automated—from cloning the repository to pushing the changes to Azure. This makes the entire process efficient and hassle-free.
+</p>        
+
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer will be dynamically loaded -->
+    <div id="footer"></div>
+</body>
+</html>

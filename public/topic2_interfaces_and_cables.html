@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 2: Interfaces and Cables</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script src="public/script/script.js" defer></script>
+</head>
+<body>
+    <!-- Navigation will be loaded -->
+    <div id="navigation"></div>
+
+    <header>
+        <h1>Topic 2: Interfaces and Cables</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction to Interfaces and Cables</h2>
+            <p>This section provides comprehensive notes on Ethernet, UTP cables, Fiber Optic cables, Ethernet standards, and their applications in networking.</p>
+        </section>
+
+        <section id="content-container">
+            <h3>Detailed Information</h3>
+            <ul id="content-list">
+                <!-- Data fetched(JSON) from MongoDB will be dynamically populated -->
+            </ul>
+        </section>
+    </main>
+    
+    <!-- Footer will be loaded -->
+    <div id="footer"></div>
+    <script>
+        async function loadContent() {
+            try {
+                const response = await fetch('/api/data/2'); // Fetch Day 2 JSON data
+                
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    
+                const data = await response.json();
+    
+                // Render sections
+                const contentList = document.getElementById("content-list");
+                contentList.innerHTML = data.sections.map(section => `
+                    <li>
+                        <strong>${section.title}</strong>
+                        <ul>
+                            ${section.content.map(item => `
+                                <li>${typeof item === "string" ? item : `<strong>${item.question}</strong>: ${item.answer}`}</li>
+                            `).join("")}
+                        </ul>
+                    </li>
+                `).join("");
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('content-list').innerHTML = `<li>Error loading data. Please try again later.</li>`;
+            }
+        }
+    
+        // Load content for Day 2 on page load
+        loadContent();
+    </script>
+    
+</body>
+</html>

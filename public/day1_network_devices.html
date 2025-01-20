@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 1: Understanding Network Devices</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script src="public/script/script.js" defer></script>
+</head>
+<body>
+    <!-- Navigation will be loaded-->
+    <div id="navigation"></div>
+    
+    <header>
+        <h1>Topic 1: Understanding Network Devices</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction to Network Devices</h2>
+            <p>This section covers foundational concepts of network devices, their roles, and their importance in digital communication.</p>
+        </section>
+        
+        <section class="image-section">
+            <h3>Visualizing Network Topologies</h3>
+            <p>Explore various network topologies and understand their configurations and applications.</p>
+            <div class="images">
+                <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/network%20topology2.png?sp=r&st=2024-12-09T19:14:21Z&se=2026-01-14T03:14:21Z&sv=2022-11-02&sr=b&sig=Hv1Xr%2BcnorfClwccBmtag59790iwmM6w2u0%2Fa1azEzg%3D" alt="Network Topology 2">
+              
+                <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/network%20topology3.png?sp=r&st=2024-12-09T19:15:21Z&se=2026-01-02T03:15:21Z&sv=2022-11-02&sr=b&sig=bRsAK0YXeqYzFZckk3OQ5%2BRqLuT%2FkiwCCqLMOeGNKd4%3D" alt="Network Topology 3">
+                <p>Illustration of network connections within a local area network (LAN).</p>
+                
+                <img src="https://hansdevhubimg.blob.core.windows.net/hansdevhub-images/network%20topology1.png?sp=r&st=2024-12-09T19:16:02Z&se=2026-01-02T03:16:02Z&sv=2022-11-02&sr=b&sig=NjDhWaDGnYrlt3ZRiROIlKS%2FuS28g7gYJzS%2B%2FnbU0Zs%3D" alt="Network Topology 1">
+            
+            </div>
+        </section>
+
+        <section id="devices-container">
+            <h3>Detailed Overview of Network Devices</h3>
+            <ul id="devices-list">
+                <!-- Data fetched(JSON) from MongoDB will be dynamically populated -->
+            </ul>
+        </section>
+    </main>
+    
+    <!-- Footer wll be loaded-->
+    <div id="footer"></div>
+    
+    <script>
+        async function loadContent() {
+            try {
+                const response = await fetch('/api/data/1'); // Fetch Day 1 JSON data
+                
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    
+                const data = await response.json();
+    
+                // Render sections
+                const devicesList = document.getElementById("devices-list");
+                devicesList.innerHTML = data.sections.map(section => `
+                    <li>
+                        <strong>${section.title}</strong>
+                        <ul>
+                            ${section.content.map(item => `
+                                <li>${typeof item === 'string' ? item : `<strong>${item.question}</strong>: ${item.answer}`}</li>
+                            `).join('')}
+                        </ul>
+                    </li>
+                `).join("");
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('devices-list').innerHTML = `<li>Error loading data. Please try again later.</li>`;
+            }
+        }
+    
+        // Load content for Day 1 on page load
+        loadContent();
+    </script>
+    
+</body>
+</html>

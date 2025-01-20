@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandbo</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script src="public/script/script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to my Game!</h1>
+    <p>You have to find the cheese by choosing the right box! There are two empty boxes and one box with cheese. Your job is to find the cheese. Once you choose a box, the host will open an empty box. You will then be asked if you would like to change your box. Press 'Yes' to change your box or 'No' if you would like to stay with your original choice</p>
+  </header>
+
+  <main>
+    <!-- Player's choices -->
+    <button onclick="playGame('Red')">Red Box</button>
+    <button onclick="playGame('Blue')">Blue Box</button>
+    <button onclick="playGame('Green')">Green Box</button>
+  </main>
+
+  <script>
+    function playGame(playerChoice) {
+      // Randomly assign the prize to a box
+      const prizeBox = Math.random();
+      let prize = '';
+      if (prizeBox <= 1 / 3) {
+        prize = 'Red';
+      } else if (prizeBox > 1 / 3 && prizeBox <= 2 / 3) {
+        prize = 'Blue';
+      } else {
+        prize = 'Green';
+      }
+
+      console.log(`Prize is in the ${prize} box.`);
+
+      // Determine the host's choice (a box that is neither the prize nor the player's choice)
+      let hostChoice = '';
+      if (prize !== 'Red' && playerChoice !== 'Red') {
+        hostChoice = 'Red';
+      } else if (prize !== 'Blue' && playerChoice !== 'Blue') {
+        hostChoice = 'Blue';
+      } else {
+        hostChoice = 'Green';
+      }
+
+      console.log(`Host opened the ${hostChoice} box, and it is empty.`);
+
+      // Ask the player if they want to switch
+      const switchChoice = confirm(
+        `The host opened the ${hostChoice} box, and it is empty. Do you want to switch your choice?`
+      );
+
+      let finalChoice = playerChoice;
+      if (switchChoice) {
+        // Switch the player's choice to the remaining unopened box
+        if (playerChoice !== 'Red' && hostChoice !== 'Red') {
+          finalChoice = 'Red';
+        } else if (playerChoice !== 'Blue' && hostChoice !== 'Blue') {
+          finalChoice = 'Blue';
+        } else {
+          finalChoice = 'Green';
+        }
+      }
+
+      // Reveal the result
+      if (finalChoice === prize) {
+        alert(`Congratulations! You picked the ${finalChoice} box and won the cheese!`);
+      } else {
+        alert(`Sorry! You picked the ${finalChoice} box, but the cheese was in the ${prize} box.`);
+      }
+    }
+  </script>
+</body>
+
+</html>
